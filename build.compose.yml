@@ -1,0 +1,12 @@
+name: build-openldap
+
+services:
+  openldap:
+    build:
+      context: openldap
+      dockerfile: Dockerfile
+    container_name: openldap
+    ports:
+      - "389:389"
+    volumes:
+      - ./data:/var/openldap-data

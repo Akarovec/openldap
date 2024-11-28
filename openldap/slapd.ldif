@@ -1,0 +1,43 @@
+dn: cn=config
+objectClass: olcGlobal
+cn: config
+olcArgsFile: /var/run/slapd.args
+olcPidFile: /var/run/slapd.pid
+
+dn: cn=module,cn=config
+objectClass: olcModuleList
+cn: module
+olcModulePath:	/libexec/openldap
+olcModuleLoad:	back_mdb.la
+
+dn: cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: schema
+
+include: file:///etc/openldap/schema/core.ldif
+
+dn: olcBackend=mdb,cn=config
+objectClass: olcBackendConfig
+olcBackend: mdb
+
+dn: olcDatabase=mdb,cn=config
+objectClass: olcDatabaseConfig
+objectClass: olcMdbConfig
+olcDatabase: mdb
+olcDbMaxSize: 1073741824
+olcSuffix: dc=example,dc=com
+olcRootDN: cn=Manager,dc=example,dc=com
+olcRootPW: Admin123$
+olcSizeLimit: 500
+olcTimeLimit: 3600
+olcDbDirectory:	/var/openldap-data
+olcDbIndex: objectClass eq
+olcReadOnly: FALSE
+olcAccess: to attrs=userPassword by self write by anonymous auth by * none
+olcAccess: to * by * read
+
+dn: olcDatabase=monitor,cn=config
+objectClass: olcDatabaseConfig
+olcDatabase: monitor
+olcRootDN: cn=config
+olcMonitoring: FALSE
