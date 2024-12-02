@@ -9,21 +9,74 @@ RUN mkdir -p /app /var/openldap-data /etc/slapd.d && \
     rm -f /app/${VERSION}.tgz && \
     cd /app/${VERSION} && \
     ./configure \
-        --prefix="/" \
-        --enable-debug=yes \
-        --enable-dynamic=no \
-        --enable-ipv6=no \
-        --enable-backends=yes \
-        --enable-overlays=yes \
-        --enable-static=yes \
+        --prefix="" \
+        --enable-debug \
+        --enable-dynamic \
+        --disable-syslog \
+        --disable-ipv6 \
+        --disable-local \
+        --enable-slapd \
+        --disable-dynacl \
+        --disable-aci \
+        --enable-cleartext \
+        --disable-modules \
+        --disable-rlookups \
+        --disable-slapi \
+        --disable-slp \
+        --disable-wrappers \
+        --disable-dnssrv \
+        --enable-ldap \
+        --enable-mdb \
+        --enable-meta \
+        --disable-asyncmeta \
+        --disable-null \
+        --disable-passwd \
+        --disable-perl \
+        --disable-relay \
+        --disable-sock \
+        --disable-sql \
+        --disable-wt \
+        --disable-accesslog \
+        --disable-auditlog \
+        --disable-autoca \
+        --disable-collect \
+        --disable-constraint \
+        --disable-dds \
+        --disable-deref \
+        --disable-dyngroup \
+        --disable-dynlist \
+        --disable-homedir \
+        --disable-memberof \
+        --disable-nestgroup \
+        --disable-ppolicy \
+        --enable-proxycache \
+        --disable-refint \
+        --disable-remoteauth \
+        --disable-retcode \
+        --disable-rwm \
+        --disable-seqmod \
+        --disable-sssvlv \
+        --disable-syncprov \
+        --enable-translucent \
+        --disable-unique \
+        --disable-valsort \
+        --disable-argon2 \
+        --disable-balancer \
+        --disable-harness \
+        --disable-static \
+        --enable-shared \
+        --disable-versioning \
+        --enable-fast-install \
+        --with-cyrus-sasl=no \
+        --with-odbc=unixodbc \
         --with-systemd=no \
-        --enable-wt=no \
-        --enable-perl=no && \
+        CFLAGS="-Os -ffunction-sections -fdata-sections" \
+        LDFLAGS="-Wl,--gc-sections -s -static" && \
     make depend build install && \
     apk del build-dependencies && \
     rm -rf /app && \
     rm -f /etc/openldap/*.conf /etc/openldap/*.default
 COPY ./*.ldif /etc/openldap/
-COPY ./run.sh /
+COPY --chmod=07777 run.sh /
 STOPSIGNAL SIGTERM
 CMD ["/run.sh"]
