@@ -3,6 +3,10 @@ objectClass: olcGlobal
 cn: config
 olcArgsFile: /var/run/slapd.args
 olcPidFile: /var/run/slapd.pid
+olcTLSCACertificateFile: /ssl/rootca.crt
+olcTLSCertificateFile: /ssl/ldap.crt
+olcTLSCertificateKeyFile: /ssl/ldap.key
+olcTLSVerifyClient: try
 
 dn: cn=module,cn=config
 objectClass: olcModuleList

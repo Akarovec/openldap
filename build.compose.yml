@@ -8,6 +8,7 @@ services:
     container_name: openldap
     ports:
       - "389:389"
+      - "636:636"
     volumes:
       - ./data:/var/openldap-data
     env_file: .env

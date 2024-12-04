@@ -1,0 +1,19 @@
+dn: ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+ou: Groups
+
+dn: ou=Lerimi,ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+ou: Lerimi
+
+dn: ou=Admin,ou=Lerimi,ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+ou: Admin
+
+dn: ou=User,ou=Lerimi,ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+ou: User
+
+dn: ou=Readonly User,ou=Lerimi,ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+ou: Readonly User

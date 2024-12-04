@@ -1,0 +1,15 @@
+openssl genrsa -aes256 -out rootca.key 4096
+
+openssl req -sha256 -new -x509 -days 3650 -extensions v3_ca \
+    -key rootca.key -out rootca.crt \
+    -subj /C=RU/ST=Moscow/L=Moscow/O=ExampleInc/OU=ITdept/CN=ca-server/emailAddress=support@example.com
+
+openssl genrsa -out ldap.key 4096
+
+openssl req -sha256 -new \
+    -key ldap.key -out ldap.csr \
+    -subj /C=RU/ST=Moscow/L=Moscow/O=ExampleInc/OU=ITdept/CN=ldap-srv.example.com/emailAddress=support@example.com
+
+openssl ca -extensions usr_cert -notext -md sha256 \
+ -keyfile rootca.key -cert rootca.crt \
+ -in ldap.csr -out ldap.crt

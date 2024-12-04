@@ -36,7 +36,7 @@ function _term() {
 function consumer_job() {
     /usr/bin/esh -o /etc/openldap/slapd.ldif /slapd.ldif.esh
     /sbin/slapadd -n 0 -F /etc/slapd.d -l /etc/openldap/slapd.ldif
-    /libexec/slapd -F /etc/slapd.d -d 256
+    /libexec/slapd -F /etc/slapd.d -d 256 -h "ldaps:/// ldap:///" -n "OpenLDAP"
 }
 
 function main() {

@@ -1,0 +1,20 @@
+dn: cn=maxname,cn=Users,dc=example,dc=com
+cn: maxname
+displayName: Maxim Komlev
+givenName: Maxim
+sn: Komlev
+initials: MK
+mail: komlevma@gmail.com
+unicodePwd: QWRtaW4xMjMk
+memberOf: ou=Admin,ou=Lerimi,ou=Groups,dc=example,dc=com
+memberOf: ou=User,ou=Lerimi,ou=Groups,dc=example,dc=com
+nTSecurityDescriptor: LDAP_SERVER_SD_FLAGS_OID
+accountExpires: 9223372036854775807
+objectCategory: cn=Users,dc=example,dc=com
+userAccountControl: 66048
+description: organizationalPerson
+msNPAllowDialin: TRUE
+instanceType: 4
+objectClass: top
+objectClass: user
+lockoutTime: 0
