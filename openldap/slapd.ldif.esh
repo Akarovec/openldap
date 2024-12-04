@@ -14,8 +14,10 @@ dn: cn=schema,cn=config
 objectClass: olcSchemaConfig
 cn: schema
 
-include: file:///etc/openldap/schema/core.ldif
+<% for S in $(echo $LDAP_INCLUDE); do -%>
+include: file:///etc/openldap/schema/<%= $(echo $S) %>.ldif
 
+<% done -%>
 dn: olcBackend=mdb,cn=config
 objectClass: olcBackendConfig
 olcBackend: mdb
@@ -25,16 +27,17 @@ objectClass: olcDatabaseConfig
 objectClass: olcMdbConfig
 olcDatabase: mdb
 olcDbMaxSize: 1073741824
-olcSuffix: dc=example,dc=com
-olcRootDN: cn=Manager,dc=example,dc=com
-olcRootPW: Admin123$
+olcSuffix: <%= ${LDAP_SUFFIX:-"dc=example,dc=com"} %>
+olcRootDN: <%= ${LDAP_ROOT_DN:-"cn=Manager,dc=example,dc=com"} %>
+olcRootPW: <%= ${LDAP_ROOT_PW:-"secret"} %>
 olcSizeLimit: 500
 olcTimeLimit: 3600
 olcDbDirectory:	/var/openldap-data
 olcDbIndex: objectClass eq
 olcReadOnly: FALSE
-olcAccess: to attrs=userPassword by self write by anonymous auth by * none
-olcAccess: to * by * read
+<% printenv | grep LDAP_ACCESS_| sed s/^[^=]*=//g | while read line; do -%>
+olcAccess: <%= "$line" %>
+<% done -%>
 
 dn: olcDatabase=monitor,cn=config
 objectClass: olcDatabaseConfig

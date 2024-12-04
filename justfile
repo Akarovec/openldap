@@ -1,4 +1,10 @@
-#!/usr/bin/env just --justfile
+set shell := ["bash", "-uc"]
+minor  := shell('expr ' + `cat "version"` + ' + 1')
 
 build:
-  docker build --platform linux/x86_64 -t maxname/openldap:latest openldap
+    docker buildx build \
+      --progress plain \
+      --push \
+      --tag arti.etl.emias.ru/mkomlev/openldap:2.6.9-0.0.{{minor}} \
+      --platform=linux/amd64,linux/arm64 openldap
+    echo {{minor}} > version
