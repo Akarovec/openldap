@@ -1,0 +1,4 @@
+dn: cn=Users,dc=example,dc=com
+objectClass: group
+cn: Users
+groupType: 1

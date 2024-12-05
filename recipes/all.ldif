@@ -1,0 +1,56 @@
+dn: dc=example,dc=com
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: Example Company
+dc: example
+
+dn: cn=Manager,dc=example,dc=com
+objectClass: organizationalRole
+cn: Manager
+
+dn: cn=Users,dc=example,dc=com
+objectClass: group
+cn: Users
+groupType: 1
+
+dn: ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+ou: Groups
+
+dn: ou=Lerimi,ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+ou: Lerimi
+
+dn: ou=Admin,ou=Lerimi,ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+ou: Admin
+
+dn: ou=User,ou=Lerimi,ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+ou: User
+
+dn: ou=Readonly User,ou=Lerimi,ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+ou: Readonly User
+
+dn: cn=maxname,cn=Users,dc=example,dc=com
+cn: maxname
+displayName: Maxim Komlev
+givenName: Maxim
+sn: Komlev
+initials: MK
+mail: komlevma@gmail.com
+unicodePwd: QWRtaW4xMjMk
+memberOf: ou=Admin,ou=Lerimi,ou=Groups,dc=example,dc=com
+memberOf: ou=User,ou=Lerimi,ou=Groups,dc=example,dc=com
+nTSecurityDescriptor: LDAP_SERVER_SD_FLAGS_OID
+accountExpires: 9223372036854775807
+objectCategory: cn=Users,dc=example,dc=com
+userAccountControl: 66048
+description: organizationalPerson
+msNPAllowDialin: TRUE
+instanceType: 4
+objectClass: mstop
+objectClass: user
+lockoutTime: 0

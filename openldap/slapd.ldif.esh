@@ -7,21 +7,22 @@ olcTLSCACertificateFile: /ssl/rootca.crt
 olcTLSCertificateFile: /ssl/ldap.crt
 olcTLSCertificateKeyFile: /ssl/ldap.key
 olcTLSVerifyClient: try
+olcAllows: bind_v2
 
 dn: cn=module,cn=config
 objectClass: olcModuleList
 cn: module
-olcModulePath:	/libexec/openldap
-olcModuleLoad:	back_mdb.la
+olcModulePath: /libexec/openldap
+olcModuleLoad: rwm
+olcModuleLoad: memberof
 
 dn: cn=schema,cn=config
 objectClass: olcSchemaConfig
 cn: schema
 
-<% for S in $(echo $LDAP_INCLUDE); do -%>
-include: file:///etc/openldap/schema/<%= $(echo $S) %>.ldif
-
+<% for S in $(echo ${LDAP_INCLUDE:-"microsoftattributetype microsoftattributetypestd corba core cosine duaconf dyngroup inetorgperson java misc nis openldap ppolicy collective microsoftobjectclass"}); do -%>include: file:///etc/openldap/schema/<%= $(echo $S) %>.ldif
 <% done -%>
+
 dn: olcBackend=mdb,cn=config
 objectClass: olcBackendConfig
 olcBackend: mdb
@@ -39,8 +40,7 @@ olcTimeLimit: 3600
 olcDbDirectory:	/var/openldap-data
 olcDbIndex: objectClass eq
 olcReadOnly: FALSE
-<% printenv | grep LDAP_ACCESS_| sed s/^[^=]*=//g | while read line; do -%>
-olcAccess: <%= "$line" %>
+<% printenv | grep LDAP_ACCESS_| sed s/^[^=]*=//g | while read line; do -%>olcAccess: <%= "$line" %>
 <% done -%>
 
 dn: olcDatabase=monitor,cn=config

@@ -5,10 +5,12 @@ services:
     build:
       context: openldap
       dockerfile: Dockerfile
+      args:
+        - ENABLE_MEMBEROF=no
     container_name: openldap
     ports:
       - "389:389"
       - "636:636"
-    volumes:
-      - ./data:/var/openldap-data
+#    volumes:
+#      - ./data:/var/openldap-data
     env_file: .env

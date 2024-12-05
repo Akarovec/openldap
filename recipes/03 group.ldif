@@ -1,7 +1,0 @@
-dn: cn=Users,dc=example,dc=com
-objectClass: group
-cn: Users
-instanceType: 4
-nTSecurityDescriptor: LDAP_SERVER_SD_FLAGS_OID
-objectCategory: dc=example,dc=com
-groupType: 1
