@@ -7,7 +7,8 @@ name: openldap
 
 services:
   openldap:
-    image: arti.etl.emias.ru/mkomlev/openldap:2.6.9-0.0.1
+    image: arti.etl.emias.ru/mkomlev/openldap:2.6.9-0.0.4
+    # image: maxname/openldap:2.6.9-0.0.4
     container_name: openldap
     ports:
       - "389:389"

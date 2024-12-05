@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 GRACEFUL_SHUTDOWN_CHANNEL="channel"
 GLOBAL_VAR_FILE="global.env"

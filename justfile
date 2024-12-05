@@ -6,5 +6,6 @@ build:
       --progress plain \
       --push \
       --tag arti.etl.emias.ru/mkomlev/openldap:2.6.9-0.0.{{minor}} \
+      --tag maxname/openldap:2.6.9-0.0.{{minor}} \
       --platform=linux/amd64,linux/arm64 openldap
     echo {{minor}} > version
