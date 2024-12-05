@@ -50,7 +50,7 @@ RUN mkdir -p /app /var/openldap-data /etc/slapd.d && \
         --disable-dyngroup \
         --disable-dynlist \
         --disable-homedir \
-        --disable-memberof \
+        --enable-memberof \
         --disable-nestgroup \
         --disable-ppolicy \
         --enable-proxycache \
