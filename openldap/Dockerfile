@@ -22,6 +22,7 @@ RUN mkdir -p /app /var/openldap-data /etc/slapd.d && \
         --enable-memberof=${ENABLE_MEMBEROF} \
         --enable-proxycache \
         --enable-translucent \
+        --enabe-rwm \
         --disable-static \
         --enable-shared \
         --disable-versioning \
